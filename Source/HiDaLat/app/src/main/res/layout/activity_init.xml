@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="vn.hidalat.activities.InitActivity">
     <ImageView
-        android:src="@drawable/caodangsupham"
+        android:src="@drawable/cdsp"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ProgressBar
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/vertical_margin_large"
             android:layout_below="@+id/title"
             android:layout_centerVertical="true"
             style="?android:attr/progressBarStyle"

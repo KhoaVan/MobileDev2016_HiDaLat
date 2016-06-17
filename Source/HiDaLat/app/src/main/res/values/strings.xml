@@ -3,4 +3,23 @@
     <string name="maps_api_key">AIzaSyDX6evCh_CoIjM21Zb167s6udpBuFl17Bo</string>
     <string name="action_settings">Settings</string>
     <string name="app_title">du lịch đà lạt</string>
+    <string name="title_activity_main">Địa điểm</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_place">ĐỊA ĐIỂM</string>
+    <string name="nav_filter">CHỌN LỌC</string>
+    <string name="nav_tour">TOUR</string>
+    <string name="nav_news">TIN TỨC</string>
+    <string name="nav_about">THÔNG TIN</string>
+    <string name="nav_share">CHIA SẺ</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="top_rated">Nổi bật</string>
+    <string name="sights">Thắng cảnh</string>
+    <string name="staying">Lưu trú</string>
+    <string name="food">Ăn uống</string>
+    <string name="shopping">Mua sắm</string>
+    <string name="back_to_exit">Chạm lần nữa để thoát ứng dụng</string>
 </resources>
