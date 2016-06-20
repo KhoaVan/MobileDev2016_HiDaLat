@@ -8,6 +8,13 @@
     <color name="c">#090246</color>
     <color name="c2">#0FAFC7</color>
     <color name="c3">#009688</color>
+    <color name="c4">#16DB08</color>
     <color name="grey">#727272</color>
-    <color name="background">#F5F5F5</color>
+    <color name="background">#DCE1E7</color>
+    <color name="trans_grey">#AA000000</color>
+
+    <color name="test">#b4000000</color>
+    <color name="headline_text">#16DB08</color>
+    <color name="trans_highlight_control">#D9FFC107</color>
+
 </resources>

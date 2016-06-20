@@ -9,14 +9,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import vn.hidalat.R;
-import vn.hidalat.fragments.FilterFragment;
-import vn.hidalat.fragments.PlaceFragment;
+import vn.hidalat.fragments.filter.FilterFragment;
+import vn.hidalat.fragments.news.NewsFragment;
+import vn.hidalat.fragments.place.PlaceFragment;
+import vn.hidalat.fragments.tour.TourFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PlaceFragment.OnFragmentInteractionListener {
@@ -58,10 +59,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void notify(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -91,17 +88,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.nav_place) {
-            Log.e(TAG, "nav_place");
             transaction.replace(R.id.frag_container, new PlaceFragment());
             transaction.commit();
         } else if (id == R.id.nav_filter) {
-            Log.e(TAG, "nav_filter");
             transaction.replace(R.id.frag_container, new FilterFragment());
             transaction.commit();
         } else if (id == R.id.nav_tour) {
-
+            transaction.replace(R.id.frag_container, new TourFragment());
+            transaction.commit();
         } else if (id == R.id.nav_news) {
-
+            transaction.replace(R.id.frag_container, new NewsFragment());
+            transaction.commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
@@ -137,4 +134,9 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.frag_container, new PlaceFragment());
         transaction.commit();
     }
+
+    private void notify(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 }

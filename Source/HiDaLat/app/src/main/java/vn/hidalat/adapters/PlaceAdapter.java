@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import vn.hidalat.R;
+import vn.hidalat.interfaces.OnItemClickListener;
 import vn.hidalat.models.Place;
 
 /**
@@ -32,13 +33,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
     private boolean mIsLoading = false;
     private LoadMoreListener mLoadMoreListener;
     private int mPageLoaded = FIRST_PAGE;
-
+    private OnItemClickListener mListener;
     public PlaceAdapter(Context context, ArrayList<Place> data, RecyclerView recyclerView) {
         this.mContext = context;
         this.mData = data;
         setupLoadMore(recyclerView);
     }
-
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
     public void setOnLoadMoreListener(LoadMoreListener onLoadMoreListener) {
         this.mLoadMoreListener = onLoadMoreListener;
     }
@@ -81,7 +84,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
                 Picasso.with(mContext)
                         .load(place.getThumbnail())
                         .into(basicHolder.imgThumbnail);
-                Log.e(TAG, place.getThumbnail());
                 break;
             case FOOTER_ITEM:
                 EndlessItemViewHolder viewHolder = (EndlessItemViewHolder) holder;
@@ -95,7 +97,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         return mData.size();
     }
 
-    public abstract class ViewHolder extends RecyclerView.ViewHolder {
+    public abstract class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ViewHolder(View itemView) {
             super(itemView);
         }
@@ -105,11 +107,19 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         public ProgressBar progressbar;
         public EndlessItemViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             progressbar = (ProgressBar) itemView.findViewById(R.id.progress);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.e(TAG, "EndlessItem clicked");
+            if (mListener != null)
+                mListener.onItemClicked(v, getLayoutPosition());
         }
     }
 
-    public final class BasicItemViewHolder extends ViewHolder {
+    public final class BasicItemViewHolder extends ViewHolder{
         public TextView tvName;
         public TextView tvAddress;
         public TextView tvDescription;
@@ -117,10 +127,19 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
 
         public BasicItemViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.card).setOnClickListener(this);
             tvName = (TextView) itemView.findViewById(R.id.name);
             tvAddress = (TextView) itemView.findViewById(R.id.address);
             tvDescription = (TextView) itemView.findViewById(R.id.description);
             imgThumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.e(TAG, "BasicItem clicked");
+            if (mListener != null)
+                mListener.onItemClicked(v, getLayoutPosition());
         }
     }
 

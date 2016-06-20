@@ -1,4 +1,4 @@
-package vn.hidalat.fragments;
+package vn.hidalat.fragments.tour;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import vn.hidalat.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FilterFragment extends Fragment {
+public class TourFragment extends Fragment {
 
 
-    public FilterFragment() {
+    public TourFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class FilterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false);
+        return inflater.inflate(R.layout.fragment_tour, container, false);
     }
 
 }

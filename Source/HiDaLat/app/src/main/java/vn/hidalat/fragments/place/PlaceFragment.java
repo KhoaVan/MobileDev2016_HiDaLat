@@ -1,4 +1,4 @@
-package vn.hidalat.fragments;
+package vn.hidalat.fragments.place;
 
 import android.content.Context;
 import android.net.Uri;

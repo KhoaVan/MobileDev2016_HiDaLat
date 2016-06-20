@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.hidalat.activities.DetailPlaceActivity">
+    <ScrollView
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="44dp"
+                android:paddingBottom="88dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/image"
+                    android:src="@drawable/cdsp"
+                    android:scaleType="centerCrop"
+                    android:maxHeight="196dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_vertical_margin"
+                    android:paddingRight="@dimen/activity_vertical_margin"
+                    android:paddingTop="@dimen/vertical_margin"
+                    android:paddingBottom="@dimen/vertical_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/head1"
+                        android:textColor="@color/headline_text"
+                        android:text="Cao đẳng sư phạm"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/address"
+                        android:maxLines="2"
+                        android:textColor="@color/grey"
+                        android:text="@string/short_sample"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@android:color/white"
+                    android:paddingTop="@dimen/vertical_margin"
+                    android:paddingBottom="@dimen/vertical_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/maps"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="144dp" />
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/activity_vertical_margin"
+                    android:orientation="vertical"
+                    android:background="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/head2"
+                        android:text="@string/info"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/content"
+                        android:layout_marginTop="@dimen/vertical_margin"
+                        android:text="@string/long_sample"
+                        android:textColor="@color/grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:padding="2dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/image"
+                        android:textSize="@dimen/head2"
+                        android:textStyle="bold"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <include layout="@layout/list_thumbnail"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    <TextView
+        android:id="@+id/type"
+        android:textAllCaps="true"
+        android:text="Địa điểm"
+        android:textStyle="bold"
+        android:textColor="@color/headline_text"
+        android:gravity="center"
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <include layout="@layout/action_detail_place" android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+</FrameLayout>

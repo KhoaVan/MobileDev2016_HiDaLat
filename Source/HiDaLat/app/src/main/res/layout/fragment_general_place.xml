@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.TopRatedFragment">
+    tools:context=".fragments.place.GeneralPlaceFragment">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:padding="@dimen/small_padding"
+        android:padding="2dp"
+        android:background="@color/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
