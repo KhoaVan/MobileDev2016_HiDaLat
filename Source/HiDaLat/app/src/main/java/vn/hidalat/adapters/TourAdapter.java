@@ -1,7 +1,7 @@
 package vn.hidalat.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,34 +17,38 @@ import java.util.ArrayList;
 
 import vn.hidalat.R;
 import vn.hidalat.interfaces.OnItemClickListener;
-import vn.hidalat.models.Place;
+import vn.hidalat.models.Tour;
 
 /**
- * Created by khoavankas on 17/06/2016.
+ * Created by j3ao on 6/20/2016.
  */
-public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
+public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
+
     private static final int FIRST_PAGE = 1;
     private static final int BASIC_ITEM = 100;
     private static final int FOOTER_ITEM = 101;
-    private static final String TAG = "PlaceAdapter";
+    private static final String TAG = "TourAdapter";
     private Context mContext;
-    private ArrayList<Place> mData;
+    private ArrayList<Tour> mData;
 
     private boolean mIsLoading = false;
     private LoadMoreListener mLoadMoreListener;
     private int mPageLoaded = FIRST_PAGE;
     private OnItemClickListener mListener;
-    public PlaceAdapter(Context context, ArrayList<Place> data, RecyclerView recyclerView) {
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+    public TourAdapter(Context context, ArrayList<Tour> data, RecyclerView recyclerView) {
         this.mContext = context;
         this.mData = data;
         setupLoadMore(recyclerView);
     }
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
+
     public void setOnLoadMoreListener(LoadMoreListener onLoadMoreListener) {
         this.mLoadMoreListener = onLoadMoreListener;
     }
+
     @Override
     public int getItemViewType(int position) {
         return mData.get(position) != null ? BASIC_ITEM : FOOTER_ITEM;
@@ -57,7 +61,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         ViewHolder viewHolder = null;
         switch (viewType) {
             case BASIC_ITEM:
-                itemView = inflater.inflate(R.layout.row_place, parent, false);
+                itemView = inflater.inflate(R.layout.row_tour, parent, false);
                 viewHolder = new BasicItemViewHolder(itemView);
                 break;
             case FOOTER_ITEM:
@@ -76,11 +80,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
             case BASIC_ITEM:
-                Place place = mData.get(position);
+                Tour place = mData.get(position);
                 BasicItemViewHolder basicHolder = (BasicItemViewHolder) holder;
                 basicHolder.tvName.setText(place.getName());
                 basicHolder.tvAddress.setText(place.getAddress());
-                basicHolder.tvDescription.setText(place.getDescription());
+                basicHolder.tvTime.setText(place.getTime());
+                basicHolder.tvPrice.setText(place.getPrice());
                 Picasso.with(mContext)
                         .load(place.getThumbnail())
                         .into(basicHolder.imgThumbnail);
@@ -107,7 +112,6 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         public ProgressBar progressbar;
         public EndlessItemViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             progressbar = (ProgressBar) itemView.findViewById(R.id.progress);
         }
 
@@ -115,10 +119,11 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         public void onClick(View v) {}
     }
 
-    public final class BasicItemViewHolder extends ViewHolder{
+    public final class BasicItemViewHolder extends ViewHolder {
         public TextView tvName;
         public TextView tvAddress;
-        public TextView tvDescription;
+        public TextView tvTime;
+        public TextView tvPrice;
         public ImageView imgThumbnail;
 
         public BasicItemViewHolder(View itemView) {
@@ -127,7 +132,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
             itemView.findViewById(R.id.card).setOnClickListener(this);
             tvName = (TextView) itemView.findViewById(R.id.name);
             tvAddress = (TextView) itemView.findViewById(R.id.address);
-            tvDescription = (TextView) itemView.findViewById(R.id.description);
+            tvTime = (TextView) itemView.findViewById(R.id.time);
+            tvPrice = (TextView) itemView.findViewById(R.id.price);
             imgThumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
         }
 
@@ -138,7 +144,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         }
     }
 
-    public ArrayList<Place> getData() {
+    public ArrayList<Tour> getData() {
         return mData;
     }
 
@@ -151,8 +157,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
     }
 
     private void setupLoadMore(RecyclerView recyclerView){
-        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-            final GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+            final LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -174,7 +180,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
         }
     }
 
-    private void addItem(Place item) {
+    private void addItem(Tour item) {
         if (mData != null && !mData.contains(item)) {
             mData.add(item);
             notifyItemInserted(mData.size() - 1);
@@ -184,7 +190,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
     public interface LoadMoreListener {
         void onLoadMore(int pagePosition);
 
-        void onLoadMoreSuccess(int pagePosition, ArrayList<Place> appendData);
+        void onLoadMoreSuccess(int pagePosition, ArrayList<Tour> appendData);
 
         void onLoadMoreFail(String message);
     }

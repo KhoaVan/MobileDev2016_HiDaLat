@@ -45,7 +45,9 @@
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.DetailPlaceActivity"></activity>
+        <activity android:name=".activities.DetailPlaceActivity" />
+        <activity android:name=".activities.DetailTourActivity" />
+        <activity android:name=".activities.DetailNewsActivity"></activity>
     </application>
 
 </manifest>

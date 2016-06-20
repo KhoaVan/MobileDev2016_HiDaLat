@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -90,15 +91,19 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_place) {
             transaction.replace(R.id.frag_container, new PlaceFragment());
             transaction.commit();
+            setTitle(getResources().getString(R.string.nav_place));
         } else if (id == R.id.nav_filter) {
             transaction.replace(R.id.frag_container, new FilterFragment());
             transaction.commit();
+            setTitle(getResources().getString(R.string.nav_filter));
         } else if (id == R.id.nav_tour) {
             transaction.replace(R.id.frag_container, new TourFragment());
             transaction.commit();
+            setTitle(getResources().getString(R.string.nav_tour));
         } else if (id == R.id.nav_news) {
             transaction.replace(R.id.frag_container, new NewsFragment());
             transaction.commit();
+            setTitle(getResources().getString(R.string.nav_news));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_about) {
@@ -129,10 +134,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void setupTitle(String title) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(title);
+        }
+    }
+
     private void initView() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frag_container, new PlaceFragment());
         transaction.commit();
+        setTitle(getResources().getString(R.string.nav_place));
     }
 
     private void notify(String msg) {

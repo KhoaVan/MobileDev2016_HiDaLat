@@ -14,7 +14,6 @@ import vn.hidalat.R;
 import vn.hidalat.adapters.PlacePagerAdapter;
 
 public class PlaceFragment extends Fragment {
-
     private OnFragmentInteractionListener mListener;
     private ViewPager mViewPager;
     private PlacePagerAdapter mPagerAdapter;
@@ -81,27 +80,5 @@ public class PlaceFragment extends Fragment {
 
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(mPagerAdapter);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
 }
