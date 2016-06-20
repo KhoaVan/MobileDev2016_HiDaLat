@@ -17,6 +17,7 @@ import android.widget.Toast;
 import vn.hidalat.R;
 import vn.hidalat.fragments.FilterFragment;
 import vn.hidalat.fragments.PlaceFragment;
+import vn.hidalat.fragments.TourFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PlaceFragment.OnFragmentInteractionListener {
@@ -99,6 +100,9 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.frag_container, new FilterFragment());
             transaction.commit();
         } else if (id == R.id.nav_tour) {
+            Log.e(TAG, "nav_tour");
+            transaction.replace(R.id.frag_container, new TourFragment());
+            transaction.commit();
 
         } else if (id == R.id.nav_news) {
 

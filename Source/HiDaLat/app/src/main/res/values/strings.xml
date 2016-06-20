@@ -17,6 +17,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_rated">Nổi bật</string>
+    <string name="day">Trong Ngày</string>
+    <string name="all">Tất cả</string>
     <string name="sights">Thắng cảnh</string>
     <string name="staying">Lưu trú</string>
     <string name="food">Ăn uống</string>
