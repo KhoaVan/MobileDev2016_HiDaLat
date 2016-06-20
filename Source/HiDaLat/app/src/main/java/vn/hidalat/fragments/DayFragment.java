@@ -28,8 +28,8 @@ public class DayFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_top_rated, container, false);
-        mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
+        View v =  inflater.inflate(R.layout.fragment_day, container, false);
+        mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_tour);
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         TourAdapter adapter = getAdapter();

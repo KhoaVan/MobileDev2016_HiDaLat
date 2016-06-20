@@ -36,7 +36,7 @@ public class TourFragment extends Fragment {
         return v;
     }
 
-    @Override
+   @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -46,6 +46,7 @@ public class TourFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
 
     @Override
     public void onDetach() {
@@ -68,10 +69,10 @@ public class TourFragment extends Fragment {
 
     private void setUpViewPager(ViewPager viewPager) {
         mPagerAdapter = new TourPagerAdapter(getActivity().getSupportFragmentManager());
-        mPagerAdapter.addFragment(new TopRatedFragment(), getResources().getString(R.string.day));
-        mPagerAdapter.addFragment(new TopRatedFragment(), getResources().getString(R.string.all));
+        mPagerAdapter.addFragment(new DayFragment(), getResources().getString(R.string.day));
+        mPagerAdapter.addFragment(new AllTourFragment(), getResources().getString(R.string.all));
 
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(mPagerAdapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
