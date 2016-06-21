@@ -1,19 +1,21 @@
 package vn.hidalat.models;
 
 /**
- * Created by khoavankas on 20/06/2016.
+ * Created by Nguyen_Dat on 6/21/2016.
  */
-public class News {
+public class NewsPage {
     String title;
     String date;
     String description;
     String thumbnail;
+    String postperson;
 
-    public News(String title, String date, String description, String thumbnail ) {
+    public NewsPage(String title, String date, String description, String thumbnail, String postperson ) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.thumbnail = thumbnail;
+        this.postperson = postperson;
 
     }
 
@@ -31,4 +33,10 @@ public class News {
         return thumbnail;
     }
 
+    public String getPostperson() {
+        return postperson;
+    }
+
 }
+
+

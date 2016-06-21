@@ -15,6 +15,6 @@
 
     <color name="test">#b4000000</color>
     <color name="headline_text">#16DB08</color>
-    <color name="trans_highlight_control">#D9FFC107</color>
+    <color name="trans_highlight_control">#04BEBD</color>
 
 </resources>

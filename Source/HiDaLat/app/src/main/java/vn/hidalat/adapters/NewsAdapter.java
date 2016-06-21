@@ -88,6 +88,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
                 Picasso.with(mContext)
                         .load(place.getThumbnail())
                         .into(basicHolder.imgThumbnail);
+
                 break;
             case FOOTER_ITEM:
                 EndlessItemViewHolder viewHolder = (EndlessItemViewHolder) holder;

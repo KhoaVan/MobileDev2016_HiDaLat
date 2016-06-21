@@ -25,13 +25,22 @@ public class DetailPlaceActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_place);
-
-        String name = "Cao đẳng sư phạm Đà Lạt";
-        String location = "29 Yersin, tp. Đà Lạt, Lâm Đồng, Việt Nam";
-        String type = "Địa điểm";
-        TextView tvType = (TextView) findViewById(R.id.type);
-        tvType.setText(type);
-        setupToolbar(name);
+        String linkimage ="";
+        String title = "";
+        String address = "";
+        String description = "";
+        String location = "";
+        ImageView  tvImage = (ImageView) findViewById(R.id.image);
+        Picasso.with(this)
+                .load(linkimage)
+                .into(tvImage);
+        TextView tvTitle = (TextView) findViewById(R.id.title);
+        tvTitle.setText(title);
+        TextView tvAddress = (TextView) findViewById(R.id.address);
+        tvAddress.setText(address);
+        TextView tvDescription = (TextView) findViewById(R.id.description);
+        tvDescription.setText(description);
+        setupToolbar(title);
         setupMaps(location);
         setupAction();
     }

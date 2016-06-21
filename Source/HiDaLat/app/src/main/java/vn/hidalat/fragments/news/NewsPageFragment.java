@@ -1,6 +1,5 @@
 package vn.hidalat.fragments.news;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,17 +13,16 @@ import java.util.ArrayList;
 
 import vn.hidalat.R;
 import vn.hidalat.activities.DetailNewsActivity;
-import vn.hidalat.adapters.NewsAdapter;
 import vn.hidalat.interfaces.OnItemClickListener;
-import vn.hidalat.models.News;
+import vn.hidalat.models.NewsPage;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Nguyen_Dat on 6/21/2016.
  */
-public class NewsFragment extends Fragment {
+public class NewsPageFragment extends Fragment {
     protected RecyclerView mRecycler;
 
-    public NewsFragment() {
+    public NewsPageFragment() {
         // Required empty public constructor
     }
 
@@ -36,7 +34,7 @@ public class NewsFragment extends Fragment {
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        NewsAdapter adapter = getAdapter();
+        NewsPageAdapter adapter = getAdapter();
         if (adapter != null){
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
@@ -50,21 +48,24 @@ public class NewsFragment extends Fragment {
         return v;
     }
 
-    private NewsAdapter getAdapter() {
-        ArrayList<News> data = initSampleData();
-        return new NewsAdapter(getContext(), data, mRecycler);
+    private NewsPageAdapter getAdapter() {
+        ArrayList<NewsPage> data = initSampleData();
+        return new NewsPageAdapter(getContext(),data,mRecycler);
     }
 
-    private ArrayList<News> initSampleData() {
-        ArrayList<News> data = new ArrayList<>();
-        String name = "Cao đẳng sư phạm";
+    private ArrayList<NewsPage> initSampleData() {
+        ArrayList<NewsPage> data = new ArrayList<>() ;
+        String title = "Cao đẳng sư phạm";
+        String date = "20/06/2016";
         String description = "Trường Cao đẳng Sư phạm Đà Lạt là một trường cao đẳng được thành lập ngày 3 tháng 9 năm 1976 theo quyết định số 1784/QĐ của Bộ Giáo dục, trụ sở đặt tại thành phố Đà Lạt, tỉnh Lâm Đồng.";
         String link = "http://seablogs.zenfs.com/u/jIGqcwqAHxoPyp4FU4djj22y/photo/ap_20110504123928120.jpg";
-        News t;
-        for (int i = 0; i < 10; i++) {
-            t = new News(name, "20/06/2016", description, link );
+        String name = "Mr. Don";
+        NewsPage t;
+        for (int i = 0; i < 1; i++) {
+            t = new NewsPage(title,date, description, link, name);
             data.add(t);
         }
         return data;
     }
+
 }
