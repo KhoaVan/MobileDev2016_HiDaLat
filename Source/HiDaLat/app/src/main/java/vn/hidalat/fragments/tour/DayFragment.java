@@ -23,12 +23,14 @@ public class DayFragment extends GeneralTourFragment{
 
     private ArrayList<Tour> initSampleData() {
         ArrayList<Tour> data = new ArrayList<>();
-        String name = "Cao đẳng sư phạm";
-        String address = "29 Yersin, tp. Đà Lạt, Lâm Đồng, Việt Nam";
-        String link = "http://seablogs.zenfs.com/u/jIGqcwqAHxoPyp4FU4djj22y/photo/ap_20110504123928120.jpg";
+        String name = "Đà Lạt Ngàn Hoa";
+        String address = "Đà lạt";
+        String time = "KH : Trong Ngày | Nơi khởi hành : Đà Lạt ";
+        String price = "195000 VND";
+        String link = "https://www.dropbox.com/home?preview=dlnh.jpg";
         Tour t;
         for (int i = 0; i < 10; i++) {
-            t = new Tour(name, address, "20/06/2016", "5.000.000", link);
+            t = new Tour(name, address, time, price, link);
             data.add(t);
         }
         return data;

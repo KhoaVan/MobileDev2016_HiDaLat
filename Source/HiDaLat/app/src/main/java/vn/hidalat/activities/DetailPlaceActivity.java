@@ -29,6 +29,7 @@ public class DetailPlaceActivity extends AppCompatActivity implements View.OnCli
         String name = "Cao đẳng sư phạm Đà Lạt";
         String location = "29 Yersin, tp. Đà Lạt, Lâm Đồng, Việt Nam";
         String type = "Địa điểm";
+
         TextView tvType = (TextView) findViewById(R.id.type);
         tvType.setText(type);
         setupToolbar(name);

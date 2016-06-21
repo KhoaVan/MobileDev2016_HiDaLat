@@ -17,7 +17,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_rated">Nổi bật</string>
-    <string name="day">Trong Ngày</string>
+    <string name="day">Hằng Ngày</string>
     <string name="all">Tất cả</string>
     <string name="sights">Thắng cảnh</string>
     <string name="staying">Lưu trú</string>
@@ -25,6 +25,7 @@
     <string name="shopping">Mua sắm</string>
     <string name="back_to_exit">Chạm lần nữa để thoát ứng dụng</string>
     <string name="info">Thông tin</string>
+    <string name="schedule">Lịch trình Tour</string>
     <string name="long_sample">Trường Cao đẳng Sư phạm Đà Lạt (trước kia là trường Grand Lycée Yersin) là kiến trúc được Hội Kiến trúc sư thế giới (UIA) công nhận là một trong số 1.000 công trình xây dựng độc đáo của thế giới trong thế kỷ 20. Trường được người Pháp thành lập năm 1927, do kiến trúc sư Moncet thiết kế và chỉ đạo xây dựng, dành cho con em người Pháp và một số gia đình người Việt giàu có. Năm 1932 trường Petit Lycée Dalat được đổi tên thành Grand Lycée de DalatLycée Yersin để tưởng niệm bác sĩ Alexandre Yersin. Dãy lớp học được xây hình vòng cung, gạch xây trường là gạch trần đỏ được chở từ châu Âu sang, mái được lợp bằng ngói làm từ nước Pháp. Hiện nay các tấm ngói lợp đã được thay thế do các tấm ngói cũ đã không còn sử dụng được nữa. Điểm nhấn của dãy nhà hình vòng cung là tháp chuông.</string>
     <string name="see_more">+ Xem thêm</string>
     <string name="image">Hình ảnh</string>
@@ -33,4 +34,5 @@
     <string name="action_direct">Chỉ đường</string>
     <string name="action_save">Lưu lại</string>
     <string name="action_share">Chia sẻ</string>
+    <string name="tour_price">195000 VND</string>
 </resources>
