@@ -1,6 +1,7 @@
 package vn.hidalat.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
                 BasicItemViewHolder basicHolder = (BasicItemViewHolder) holder;
                 basicHolder.tvName.setText(place.getName());
                 basicHolder.tvAddress.setText(place.getAddress());
-                basicHolder.tvDescription.setText(place.getDescription());
+                basicHolder.tvDescription.setText(place.getSummary());
                 Picasso.with(mContext)
                         .load(place.getThumbnail())
                         .into(basicHolder.imgThumbnail);
@@ -125,8 +126,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
             super(itemView);
             itemView.setOnClickListener(this);
             itemView.findViewById(R.id.card).setOnClickListener(this);
-            tvName = (TextView) itemView.findViewById(R.id.name);
-            tvAddress = (TextView) itemView.findViewById(R.id.address);
+            tvName = (TextView) itemView.findViewById(R.id.place_name);
+            tvAddress = (TextView) itemView.findViewById(R.id.place_address);
             tvDescription = (TextView) itemView.findViewById(R.id.description);
             imgThumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
         }
@@ -140,6 +141,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
 
     public ArrayList<Place> getData() {
         return mData;
+    }
+
+    public Place getItem(int position) {
+        return mData == null ? null : mData.get(position);
     }
 
     public void setPageLoaded(int pageLoaded) {
@@ -179,6 +184,25 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder>{
             mData.add(item);
             notifyItemInserted(mData.size() - 1);
         }
+    }
+
+    public boolean addItems(@NonNull ArrayList<Place> newData) {
+        for (Place trans : newData) {
+            mData.add(trans);
+            notifyItemInserted(mData.size() - 1);
+        }
+        return true;
+    }
+
+    public boolean removeItem(Place item) {
+        int itemIndex = mData.lastIndexOf(item);
+        if (itemIndex != -1) {
+            mData.remove(itemIndex);
+            notifyItemRemoved(itemIndex);
+            return true;
+        }
+
+        return false;
     }
 
     public interface LoadMoreListener {

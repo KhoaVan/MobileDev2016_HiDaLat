@@ -3,10 +3,7 @@ package vn.hidalat.fragments.place;
 
 import android.support.v4.app.Fragment;
 
-import java.util.ArrayList;
-
-import vn.hidalat.adapters.PlaceAdapter;
-import vn.hidalat.models.Place;
+import vn.hidalat.interfaces.ServiceListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,8 +12,11 @@ public class ShoppingFragment extends GeneralPlaceFragment {
     public ShoppingFragment() {
         // Required empty public constructor
     }
-
     @Override
+    protected void reqData(int page, ServiceListener onResponse) {
+        onResponse.onFailure(null, ServiceListener.FAILURE, null);
+    }
+    /*@Override
     protected PlaceAdapter getAdapter() {
         ArrayList<Place> data = new ArrayList<>();
         Place place;
@@ -29,6 +29,6 @@ public class ShoppingFragment extends GeneralPlaceFragment {
             data.add(place);
         }
         return new PlaceAdapter(getContext(), data, mRecycler);
-    }
+    }*/
 
 }
