@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // review navication
     private void initView() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frag_container, new PlaceFragment());
