@@ -33,4 +33,8 @@
     <string name="action_direct">Chỉ đường</string>
     <string name="action_save">Lưu lại</string>
     <string name="action_share">Chia sẻ</string>
+    <string name="fetch_route">Đang tìm đường đi...</string>
+    <string name="time_sample">23/06/2016</string>
+    <string name="price_sample">5.000.000 VND</string>
+    <string name="related_tour">Tour liên quan</string>
 </resources>

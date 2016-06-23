@@ -130,8 +130,8 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
             super(itemView);
             itemView.setOnClickListener(this);
             itemView.findViewById(R.id.card).setOnClickListener(this);
-            tvName = (TextView) itemView.findViewById(R.id.name);
-            tvAddress = (TextView) itemView.findViewById(R.id.address);
+            tvName = (TextView) itemView.findViewById(R.id.place_name);
+            tvAddress = (TextView) itemView.findViewById(R.id.place_address);
             tvTime = (TextView) itemView.findViewById(R.id.time);
             tvPrice = (TextView) itemView.findViewById(R.id.price);
             imgThumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);

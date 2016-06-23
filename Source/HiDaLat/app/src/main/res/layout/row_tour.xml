@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
         <com.joooonho.SelectableRoundedImageView
             android:id="@+id/thumbnail"
+            android:src="@drawable/cdsp"
             android:scaleType="centerCrop"
             app:sriv_left_top_corner_radius="4dp"
             app:sriv_right_top_corner_radius="4dp"
@@ -27,26 +28,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/place_name"
+                android:text="tour name"
                 android:textColor="@color/headline_text"
                 android:textSize="14sp"
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/place_address"
+                android:text="@string/short_sample"
                 android:textColor="@color/grey"
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/time"
+                android:text="@string/time_sample"
                 android:layout_marginTop="8dp"
                 android:maxLines="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/price"
+                android:text="@string/price_sample"
                 android:layout_marginTop="8dp"
                 android:maxLines="3"
                 android:layout_width="match_parent"

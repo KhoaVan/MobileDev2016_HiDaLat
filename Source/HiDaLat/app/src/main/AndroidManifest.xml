@@ -8,7 +8,6 @@
     <permission
         android:name="vn.vindotcom.taxi.operator.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -47,7 +46,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.DetailPlaceActivity" />
         <activity android:name=".activities.DetailTourActivity" />
-        <activity android:name=".activities.DetailNewsActivity"></activity>
+        <activity android:name=".activities.DetailNewsActivity" />
+        <activity android:name=".activities.MapsActivity"></activity>
     </application>
 
 </manifest>

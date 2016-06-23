@@ -65,7 +65,8 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/see_more"
-                android:visibility="visible"
+                android:clickable="true"
+                android:visibility="invisible"
                 android:background="@color/trans_grey"
                 android:textColor="@android:color/white"
                 android:gravity="center"
