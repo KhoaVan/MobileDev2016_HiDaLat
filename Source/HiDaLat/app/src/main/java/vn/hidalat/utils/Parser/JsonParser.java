@@ -9,8 +9,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+import vn.hidalat.models.News;
 import vn.hidalat.models.OpenTime;
 import vn.hidalat.models.Place;
+import vn.hidalat.models.Tour;
+
 import vn.hidalat.models.post.LatLng;
 
 /**
@@ -19,7 +23,9 @@ import vn.hidalat.models.post.LatLng;
 public class JsonParser {
     private static final String TAG = "JsonParser";
 
-    public ArrayList<Place> parsePlaces(String json){
+
+    public ArrayList<Place> parsePlaces(String json) {
+
         ArrayList<Place> data = new ArrayList<>();
         JSONArray arr = null;
         try {
@@ -68,4 +74,70 @@ public class JsonParser {
 
         return data;
     }
+
+    public ArrayList<News> parseNews(String json) {
+        ArrayList<News> data = new ArrayList<>();
+        JSONArray arr = null;
+        try {
+            arr = new JSONArray(json);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                String id = obj.getString("_id");
+                String title = obj.getString("title");
+                Boolean isHot = obj.getBoolean("isHot");
+                String author = obj.getString("author");
+                String thumbnail = obj.getString("coverImage");
+                String description = obj.getString("description");
+                String content  = obj.getString("content");
+                String date = obj.getString("date_create");
+               // String date_update = obj.getString("date_update");
+
+                News news = new News(id,title,isHot,author,thumbnail,description,content,date);
+                data.add(news);
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, e.toString());
+
+        }
+        return data;
+    }
+    public ArrayList<Tour> parseTours(String json) {
+        ArrayList<Tour> data = new ArrayList<>();
+        JSONArray arr = null;
+        try {
+            arr = new JSONArray(json);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                String id = obj.getString("_id");
+                String name = obj.getString("name");
+                String company = obj.getString("company");
+                String thumbnail = obj.getString("coverImage");
+                String price   = obj.getString("price");
+                String phone = obj.getString("telephone");
+                String email = obj.getString("email");
+                String duration  = obj.getString("duration");
+                String startdate = obj.getString("startdate");
+                String description = obj.getString("description");
+                String content = obj.getString("content");
+                Boolean ishot  = obj.getBoolean("isHot");
+                JSONArray imageList = obj.getJSONArray("imageList");
+
+                // Parse array
+                ArrayList<String> imgs = new ArrayList<String>();
+                for (int j = 0; j < imageList.length(); j++) {
+                    String url = ((JSONObject) imageList.get(j)).getString("url");
+                    imgs.add(url);
+                }
+
+
+               Tour tour = new Tour(id, name, company,thumbnail, price, phone, email,duration, startdate, description,content , imgs, ishot);
+                data.add(tour);
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, e.toString());
+        }
+
+        return data;
+    }
+
 }

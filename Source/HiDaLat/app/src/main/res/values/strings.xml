@@ -29,6 +29,8 @@
     <string name="see_more">+ Xem thêm</string>
     <string name="image">Hình ảnh</string>
     <string name="short_sample">29 Yersin, tp. Đà Lạt, Lâm Đồng, Việt Nam</string>
+    <string name="post_date">20/6/2016</string>
+    <string name="post_person">Mr.Don</string>
     <string name="action_view_image">Xem hình</string>
     <string name="action_direct">Chỉ đường</string>
     <string name="action_save">Lưu lại</string>
@@ -37,4 +39,6 @@
     <string name="time_sample">23/06/2016</string>
     <string name="price_sample">5.000.000 VND</string>
     <string name="related_tour">Tour liên quan</string>
+    <string name="schedule">Lịch trình Tour</string>
+
 </resources>

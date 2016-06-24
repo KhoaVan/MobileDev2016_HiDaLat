@@ -13,7 +13,7 @@ import retrofit2.Response;
 import vn.hidalat.interfaces.ServiceListener;
 import vn.hidalat.interfaces.TravelService;
 import vn.hidalat.models.Place;
-import vn.hidalat.models.post.PlacesReq;
+import vn.hidalat.models.post.PlaceReq;
 import vn.hidalat.nets.RestService;
 import vn.hidalat.utils.Parser.JsonParser;
 import vn.hidalat.utils.constant.Const;
@@ -29,7 +29,8 @@ public class SightsFragment extends GeneralPlaceFragment {
     protected void reqData(int page, final ServiceListener onResponse) {
         final int p = page;
         TravelService service = RestService.create(TravelService.class);
-        service.reqPlacesByType(new PlacesReq(Const.SIGHTS_PLACE, page))
+
+        service.reqPlacesByType(new PlaceReq(Const.SIGHTS_PLACE, page))
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

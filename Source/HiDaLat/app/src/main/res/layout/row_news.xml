@@ -15,19 +15,16 @@
         android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
-        android:weightSum="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/thumbnail"
             android:layout_marginRight="@dimen/vertical_margin"
-            android:layout_weight="0.7"
             android:scaleType="centerCrop"
             android:src="@drawable/cdsp"
-            android:layout_width="wrap_content"
+            android:layout_width="96dp"
             android:layout_height="120dp" />
         <LinearLayout
-            android:layout_weight="0.3"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
