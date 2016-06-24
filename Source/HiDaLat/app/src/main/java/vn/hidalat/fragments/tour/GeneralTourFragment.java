@@ -22,6 +22,7 @@ import vn.hidalat.adapters.TourAdapter;
 import vn.hidalat.interfaces.OnItemClickListener;
 import vn.hidalat.interfaces.ServiceListener;
 import vn.hidalat.models.Place;
+import vn.hidalat.models.Tour;
 import vn.hidalat.utils.constant.Const;
 
 /**
@@ -29,12 +30,12 @@ import vn.hidalat.utils.constant.Const;
  */
 public abstract class GeneralTourFragment extends Fragment {
     private static final String TAG = "GeneralTourFrag";
-    public static final String P_PLACE = "GeneralPlaceFragment.P_PLACE";
+    public static final String P_TOUR = "GeneralTourFragment.P_TOUR";
     protected RecyclerView mRecycler;
-    private PlaceAdapter mAdapter;
-    private PlaceAdapter.LoadMoreListener mOnLoadMore;
+    private TourAdapter mAdapter;
+    private TourAdapter.LoadMoreListener mOnLoadMore;
 
-    public GeneralPlaceFragment() {
+    public GeneralTourFragment() {
         // Required empty public constructor
     }
 
@@ -42,10 +43,10 @@ public abstract class GeneralTourFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_general_place, container, false);
+        View v = inflater.inflate(R.layout.fragment_general_tour, container, false);
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecycler.setHasFixedSize(true);
-        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         final ServiceListener onResponse = new ServiceListener() {
             @Override
             public void onSuccess(Object data, int error, String msg) {
@@ -54,9 +55,9 @@ public abstract class GeneralTourFragment extends Fragment {
                 if (data != null){
                     ArrayList<Object> obj = (ArrayList<Object>) data;
                     int page = (int) obj.get(0);
-                    ArrayList<Place> places = (ArrayList<Place>) obj.get(1);
+                    ArrayList<Tour> tours = (ArrayList<Tour>) obj.get(1);
                     if (page == Const.DEFAULT_PAGE) {
-                        mAdapter = new PlaceAdapter(getContext(), places, mRecycler);
+                        mAdapter = new TourAdapter(getContext(), tours, mRecycler);
                         mAdapter.setOnLoadMoreListener(mOnLoadMore);
                         mAdapter.setOnItemClickListener(new OnItemClickListener() {
                             @Override
@@ -67,7 +68,7 @@ public abstract class GeneralTourFragment extends Fragment {
                         });
                         mRecycler.setAdapter(mAdapter);
                     } else {
-                        mOnLoadMore.onLoadMoreSuccess(page, places);
+                        mOnLoadMore.onLoadMoreSuccess(page, tours);
                     }
 
                 } else{
@@ -82,14 +83,14 @@ public abstract class GeneralTourFragment extends Fragment {
             }
         };
         //  Load more
-        mOnLoadMore = new PlaceAdapter.LoadMoreListener() {
+        mOnLoadMore = new TourAdapter.LoadMoreListener() {
             @Override
             public void onLoadMore(int pagePosition) {
                 reqData(pagePosition, onResponse);
             }
 
             @Override
-            public void onLoadMoreSuccess(int pagePosition, ArrayList<Place> appendData) {
+            public void onLoadMoreSuccess(int pagePosition, ArrayList<Tour> appendData) {
                 // Remove loading
                 mAdapter.removeItem(null);
                 mAdapter.addItems(appendData);
@@ -114,10 +115,10 @@ public abstract class GeneralTourFragment extends Fragment {
      * Handle recycler view item clicked. Also modified in subclass
      */
     protected void doOnItemClicked(View v, int position) {
-        Intent intent = new Intent(getContext(), DetailPlaceActivity.class);
+        Intent intent = new Intent(getContext(), DetailTourActivity.class);
         if (mAdapter != null) {
-            Place p = mAdapter.getItem(position);
-            intent.putExtra(P_PLACE, p);
+            Tour p = mAdapter.getItem(position);
+            intent.putExtra(P_TOUR, p);
         }
         startActivity(intent);
     }

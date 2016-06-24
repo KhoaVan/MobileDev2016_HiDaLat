@@ -16,5 +16,5 @@
     <color name="test">#b4000000</color>
     <color name="headline_text">#16DB08</color>
     <color name="trans_highlight_control">#04BEBD</color>
-
+    <color name="color_price">#F2A43D</color>
 </resources>

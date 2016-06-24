@@ -3,6 +3,7 @@ package vn.hidalat.fragments.tour;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vn.hidalat.R;
 import vn.hidalat.activities.DetailNewsActivity;
+import vn.hidalat.activities.DetailTourActivity;
 import vn.hidalat.adapters.NewsAdapter;
 import vn.hidalat.adapters.TourAdapter;
 import vn.hidalat.interfaces.OnItemClickListener;
@@ -35,7 +37,7 @@ import vn.hidalat.utils.constant.Const;
  * Created by j3ao on 6/20/2016.
  */
 public class AllTourFragment extends GeneralTourFragment {
-    private static final String TAG = "ToursFrag";
+    private static final String TAG = "AllToursFrag";
     public static final String P_TOUR = "AllTourFragment.P_Tours";
     protected RecyclerView mRecycler;
     private TourAdapter mAdapter;
@@ -49,7 +51,7 @@ public class AllTourFragment extends GeneralTourFragment {
         View v = inflater.inflate(R.layout.fragment_tour, container, false);
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecycler.setHasFixedSize(true);
-        mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(),2));
         //NewsAdapter adapter = getAdapter();
         final ServiceListener onResponse = new ServiceListener() {
             @Override
@@ -120,7 +122,7 @@ public class AllTourFragment extends GeneralTourFragment {
      * Handle recycler view item clicked. Also modified in subclass
      */
     protected void doOnItemClicked(View v, int position) {
-        Intent intent = new Intent(getContext(), DetailNewsActivity.class);
+        Intent intent = new Intent(getContext(), DetailTourActivity.class);
         if (mAdapter != null) {
             Tour p = mAdapter.getItem(position);
             intent.putExtra(P_TOUR, (Parcelable) p);
