@@ -7,27 +7,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import vn.hidalat.R;
 import vn.hidalat.fragments.news.NewsFragment;
 import vn.hidalat.fragments.tour.GeneralTourFragment;
 import vn.hidalat.models.News;
+import vn.hidalat.models.Place;
 import vn.hidalat.models.Tour;
+import vn.hidalat.utils.constant.Const;
 
 public class DetailTourActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "DetailTourAct";
-    private TextView mName;
-    private TextView mCompany;
+    private TextView mTvName;
+    private TextView mTvCompany;
     private ImageView mImgCover;
-    private TextView mPrice;
-    private TextView mPhone;
-    private TextView mEmail;
-    private TextView mDuration;
-    private TextView mStartdate;
-    private TextView mContent;
+    private TextView mTvPrice;
+    private TextView mTvPhone;
+    private TextView mTvEmail;
+    private TextView mTvDuration;
+    private TextView mTvStartdate;
+    private TextView mTvContent;
+
 
     // Thumbnail list
     private ImageView mImg1;
@@ -36,8 +42,9 @@ public class DetailTourActivity extends AppCompatActivity implements View.OnClic
     private ImageView mImg4;
     private ImageView mImg5;
     private ImageView mImg6;
+    private TextView mSeeMore;
     // private TextView mTvPlaceAddress;
-    private TextView mTvNewsDescription;
+   // private TextView mTvNewsDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,36 +53,77 @@ public class DetailTourActivity extends AppCompatActivity implements View.OnClic
 
         Tour p = getIntent().getParcelableExtra(GeneralTourFragment.P_TOUR);
         setupView(p);
-
+        setupThumbnailList(p);
         setupToolbar(p);
 
     }
+
+    private void setupThumbnailList(Tour p) {
+        if (p != null) {
+            ArrayList<String> thumbnails = p.getImageList();
+            if (thumbnails != null) {
+                ArrayList<ImageView> imgs = new ArrayList<>();
+                imgs.add(mImg1);
+                imgs.add(mImg2);
+                imgs.add(mImg3);
+                imgs.add(mImg4);
+                imgs.add(mImg5);
+                imgs.add(mImg6);
+                int i;
+                for (i = 0; i < thumbnails.size() && i < Const.MAX_PLACE_THUMBNAILS; i++) {
+                    Picasso.with(this)
+                            .load(thumbnails.get(i))
+                            .placeholder(R.drawable.placeholder)
+                            .into(imgs.get(i));
+                }
+
+                // See more visibility
+                if (i == Const.MAX_PLACE_THUMBNAILS)
+                    mSeeMore.setVisibility(View.GONE);
+            }
+        }
+    }
     private void setupView(Tour p) {
-        mName = (TextView) findViewById(R.id.tour_name);
+        mTvName = (TextView) findViewById(R.id.tour_name);
         mImgCover = (ImageView) findViewById(R.id.image);
-        mCompany = (TextView) findViewById(R.id.tour_name);
-        mPrice = (TextView) findViewById(R.id.price);
-        mPhone = (TextView) findViewById(R.id.tour_name);
-        mEmail = (TextView) findViewById(R.id.tour_name);
-        mStartdate = (TextView) findViewById(R.id.date);
-        mDuration = (TextView) findViewById(R.id.tour_intro);
-        mContent = (TextView) findViewById(R.id.content);
+        mTvDuration = (TextView) findViewById(R.id.duration);
+        mTvStartdate = (TextView) findViewById(R.id.start_date);
+        mTvPrice = (TextView) findViewById(R.id.price);
+        mTvContent = (TextView) findViewById(R.id.content);
+        mTvCompany = (TextView) findViewById(R.id.company);
+        mTvPhone = (TextView) findViewById(R.id.phone);
+        mTvEmail = (TextView) findViewById(R.id.email);
 
-
+        mImg1 = (ImageView) findViewById(R.id.img1);
+        mImg2 = (ImageView) findViewById(R.id.img2);
+        mImg3 = (ImageView) findViewById(R.id.img3);
+        mImg4 = (ImageView) findViewById(R.id.img4);
+        mImg5 = (ImageView) findViewById(R.id.img5);
+        mImg6 = (ImageView) findViewById(R.id.img6);
+        mSeeMore = (TextView) findViewById(R.id.see_more);
         // Update data
         if (p != null) {
             Picasso.with(this)
                     .load(p.getThumbnail())
                     .placeholder(R.drawable.placeholder)
                     .into(mImgCover);
-            mName.setText(p.getName());
-            mCompany.setText(p.getCompany());
-            mPrice.setText(p.getPrice());
-            mPhone.setText(p.getTelephone());
-            mEmail.setText(p.getEmail());
-            mStartdate.setText(p.getStartdate());
-            mContent.setText(p.getContent());
+            mTvName.setText(p.getName());
+            mTvDuration.setText(p.getDuration());
+            mTvStartdate.setText(p.getStartdate());
+            mTvPrice.setText(p.getPrice());
+            mTvCompany.setText(p.getCompany());
+            mTvPhone.setText(p.getTelephone());
+            mTvEmail.setText(p.getEmail());
+            mTvContent.setText(p.getContent());
+            mSeeMore = (TextView) findViewById(R.id.see_more);
         }
+        // See more clicked
+        mSeeMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailTourActivity.this, "See more image", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupToolbar(Tour p) {

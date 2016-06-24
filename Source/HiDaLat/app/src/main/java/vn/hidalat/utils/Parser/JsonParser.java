@@ -111,12 +111,12 @@ public class JsonParser {
                 String id = obj.getString("_id");
                 String name = obj.getString("name");
                 String company = obj.getString("company");
-                String thumbnail = obj.getString("coverImage");
+                String thumbnail = obj.getString("cover_image");
                 String price   = obj.getString("price");
                 String phone = obj.getString("telephone");
                 String email = obj.getString("email");
                 String duration  = obj.getString("duration");
-                String startdate = obj.getString("startdate");
+                String startdate = obj.getString("startDate");
                 String description = obj.getString("description");
                 String content = obj.getString("content");
                 Boolean ishot  = obj.getBoolean("isHot");

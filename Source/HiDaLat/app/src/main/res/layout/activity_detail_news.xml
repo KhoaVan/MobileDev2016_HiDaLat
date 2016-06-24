@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.hidalat.activities.DetailPlaceActivity">
+    tools:context="vn.hidalat.activities.DetailNewsActivity">
     <ScrollView
         android:background="@color/background"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/image"
-                android:src="@drawable/cdsp"
+                android:src="@drawable/icon_info"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="336dp" />

@@ -40,5 +40,6 @@
     <string name="price_sample">5.000.000 VND</string>
     <string name="related_tour">Tour liên quan</string>
     <string name="schedule">Lịch trình Tour</string>
+    <string name="introduce_app">\tỨng dụng được phát triển bởi nhóm RubyTech.\nLiên hệ: donleqt@gmail.com</string>
 
 </resources>

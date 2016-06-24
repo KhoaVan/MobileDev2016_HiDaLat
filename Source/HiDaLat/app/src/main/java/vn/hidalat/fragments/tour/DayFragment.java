@@ -36,98 +36,9 @@ import vn.hidalat.utils.constant.Const;
 
 public class DayFragment extends GeneralTourFragment{
     private static final String TAG = "DayToursFrag";
-    public static final String P_TOUR = "DayTourFragment.P_Tours";
-    protected RecyclerView mRecycler;
-    private TourAdapter mAdapter;
-    private TourAdapter.LoadMoreListener mOnLoadMore;
     public DayFragment() {
         // Required empty public constructor
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_tour, container, false);
-        mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
-        mRecycler.setHasFixedSize(true);
-        mRecycler.setLayoutManager(new GridLayoutManager(getActivity(),1));
-        //NewsAdapter adapter = getAdapter();
-        final ServiceListener onResponse = new ServiceListener() {
-            @Override
-            public void onSuccess(Object data, int error, String msg) {
-                Log.e(TAG, "onSuccess");
-                // Update adapter
-                if (data != null) {
-                    ArrayList<Object> obj = (ArrayList<Object>) data;
-                    int page = (int) obj.get(0);
-                    ArrayList<Tour> tour = (ArrayList<Tour>) obj.get(1);
-                    if (page == Const.DEFAULT_PAGE) {
-                        mAdapter = new TourAdapter(getContext(), tour, mRecycler);
-                        mAdapter.setOnLoadMoreListener(mOnLoadMore);
-                        mAdapter.setOnItemClickListener(new OnItemClickListener() {
-                            @Override
-                            public void onItemClicked(View v, int position) {
-                                Log.e(TAG, "onItemClicked");
-                                doOnItemClicked(v, position);
-                            }
-                        });
-                        mRecycler.setAdapter(mAdapter);
-                    } else {
-                        mOnLoadMore.onLoadMoreSuccess(page, tour);
-                    }
-
-                } else {
-                    // TODO: notify
-
-                }
-            }
-
-            @Override
-            public void onFailure(Object data, int error, String msg) {
-                Log.e(TAG, "onFailure");
-            }
-        };
-
-        //  Load more
-        mOnLoadMore = new TourAdapter.LoadMoreListener() {
-            @Override
-            public void onLoadMore(int pagePosition) {
-                reqData(pagePosition, onResponse);
-            }
-
-            @Override
-            public void onLoadMoreSuccess(int pagePosition, ArrayList<Tour> appendData) {
-                // Remove loading
-                mAdapter.removeItem(null);
-                mAdapter.addItems(appendData);
-                mAdapter.setPageLoaded(pagePosition);
-                mAdapter.setLoading(false);
-            }
-
-            @Override
-            public void onLoadMoreFail(String message) {
-                // Remove loading
-                mAdapter.removeItem(null);
-                mAdapter.setLoading(false);
-            }
-        };
-
-        reqData(Const.DEFAULT_PAGE, onResponse);
-
-        return v;
-    }
-
-    /**
-     * Handle recycler view item clicked. Also modified in subclass
-     */
-    protected void doOnItemClicked(View v, int position) {
-        Intent intent = new Intent(getContext(), DetailTourActivity.class);
-        if (mAdapter != null) {
-            Tour p = mAdapter.getItem(position);
-            intent.putExtra(P_TOUR, (Parcelable) p);
-        }
-        startActivity(intent);
-    }
-
     /**
      * Create an adapter for recycler view
      */

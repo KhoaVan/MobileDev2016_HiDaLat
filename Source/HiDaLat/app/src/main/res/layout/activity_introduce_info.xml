@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vn.hidalat.activities.DetailPlaceActivity">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:paddingBottom="88dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
+                android:paddingTop="@dimen/vertical_margin"
+                android:paddingBottom="@dimen/vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id = "@+id/title"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/trans_highlight_control"
+                    android:text="Ứng dụng thông tin du lịch - Hi DaLat"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/imageView332"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/icon_info"
+                    android:scaleType="centerInside"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:padding="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.51">
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_marginTop="@dimen/vertical_margin"
+                    android:text="@string/introduce_app"
+                    android:textColor="#000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+</FrameLayout>

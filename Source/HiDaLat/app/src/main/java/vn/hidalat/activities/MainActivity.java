@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import vn.hidalat.R;
 import vn.hidalat.fragments.filter.FilterFragment;
+import vn.hidalat.fragments.introduce.IntroduceFragment;
 import vn.hidalat.fragments.news.NewsFragment;
 import vn.hidalat.fragments.place.PlaceFragment;
 import vn.hidalat.fragments.tour.TourFragment;
@@ -108,7 +109,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
             Log.e(TAG, "hidalat");
         } else if (id == R.id.nav_about) {
-
+            transaction.replace(R.id.frag_container, new IntroduceFragment());
+            transaction.commit();
+            setTitle(getResources().getString(R.string.nav_about));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
