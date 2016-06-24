@@ -2,6 +2,7 @@ package vn.hidalat.activities;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import vn.hidalat.R;
@@ -221,6 +224,23 @@ public class DetailPlaceActivity extends AppCompatActivity implements View.OnCli
 
     }
     private void doOnSharelicked() {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        Uri screenshotUri = Uri.parse("https://pbs.twimg.com/profile_images/655066410087940096/QSUlrrlm.png");
+
+        try {
+            InputStream stream = getContentResolver().openInputStream(screenshotUri);
+        }
+
+        catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        sharingIntent.setType("image/jpeg");
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Chia sẻ từ ứng dụng HiDaLat");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, "Thật tuyệt vời khi đến nơi đây ! " + "\n\n" + mTvPlaceName.getText());
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+        startActivity(Intent.createChooser(sharingIntent, "Lựa chọn nơi chia sẻ địa điểm "));
 
     }
 }
