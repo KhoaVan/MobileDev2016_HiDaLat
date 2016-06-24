@@ -22,21 +22,21 @@ public class Tour implements Parcelable{
     private String duration;
    // private String address;
     private String startdate;
-    private String decription;
+    private String description;
     private String content;
     private ArrayList<String> imageList;
     private Boolean ishot = false;
 
-    public Tour(String name, String decription, String startdate, String price, String thumbnail) {
+    public Tour(String name, String description, String startdate, String price, String thumbnail) {
         this.name = name;
-        this.decription = decription;
+        this.description = description;
         this.startdate = startdate;
         this.price = price;
         this.thumbnail = thumbnail;
     }
 
     public Tour(String id, String name, String company,String thumbnail, String price,
-                String telephone, String email, String duration, String startdate, String decription, String content,
+                String telephone, String email, String duration, String startdate, String description, String content,
                 ArrayList<String> imageList, Boolean ishot ){
         this.id = id;
         this.name = name;
@@ -47,7 +47,7 @@ public class Tour implements Parcelable{
         this.email  = email;
         this.duration = duration;
         this.startdate = startdate;
-        this.decription = decription;
+        this.description = description;
         this.content = content;
         this.imageList = imageList;
         this.ishot = ishot;
@@ -62,7 +62,7 @@ public class Tour implements Parcelable{
 
     public String getDuration(){return duration;}
 
-    public String getDecription(){return decription;}
+    public String getDecription(){return description;}
 
     public  String getContent (){return content;}
 
@@ -102,7 +102,7 @@ public class Tour implements Parcelable{
         dest.writeString(this.email);
         dest.writeString(this.duration);
         dest.writeString(this.startdate);
-        dest.writeString(this.decription);
+        dest.writeString(this.description);
         dest.writeString(this.content);
         dest.writeStringList(this.imageList);
         dest.writeValue(this.ishot);
@@ -118,7 +118,7 @@ public class Tour implements Parcelable{
         this.email = in.readString();
         this.duration = in.readString();
         this.startdate= in.readString();
-        this.decription = in.readString();
+        this.description = in.readString();
         this.content = in.readString();
         this.imageList = in.createStringArrayList();
         this.ishot = (Boolean) in.readValue(Boolean.class.getClassLoader());
