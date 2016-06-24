@@ -1,6 +1,9 @@
 package vn.hidalat.adapters;
-
+/**
+ * Created by Nguyen_Dat on 6/23/2016.
+ */
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import vn.hidalat.R;
 import vn.hidalat.interfaces.OnItemClickListener;
 import vn.hidalat.models.News;
+import vn.hidalat.models.Place;
 
 /**
  * Created by khoavankas on 20/06/2016.
@@ -146,6 +150,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         return mData;
     }
 
+    public News getItem(int position) {
+        return mData == null ? null : mData.get(position);
+    }
+
     public void setPageLoaded(int pageLoaded) {
         this.mPageLoaded = pageLoaded;
     }
@@ -183,6 +191,25 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
             mData.add(item);
             notifyItemInserted(mData.size() - 1);
         }
+    }
+
+    public boolean addItems(@NonNull ArrayList<News> newData) {
+        for (News trans : newData) {
+            mData.add(trans);
+            notifyItemInserted(mData.size() - 1);
+        }
+        return true;
+    }
+
+    public boolean removeItem(News item) {
+        int itemIndex = mData.lastIndexOf(item);
+        if (itemIndex != -1) {
+            mData.remove(itemIndex);
+            notifyItemRemoved(itemIndex);
+            return true;
+        }
+
+        return false;
     }
 
     public interface LoadMoreListener {

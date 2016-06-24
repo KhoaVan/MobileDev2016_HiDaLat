@@ -9,43 +9,68 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
 import vn.hidalat.R;
+import vn.hidalat.fragments.news.NewsFragment;
+import vn.hidalat.fragments.place.GeneralPlaceFragment;
+import vn.hidalat.models.News;
+import vn.hidalat.models.Place;
+import vn.hidalat.utils.Converter;
 
-public class DetailNewsActivity extends AppCompatActivity {
+public class DetailNewsActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "DetailNewsAct";
-
+    private ImageView mImgCover;
+    private TextView mTvNewsTitle;
+    private TextView mTvNewsDate;
+    private TextView mTvNewsAuthor;
+   // private TextView mTvPlaceAddress;
+    private TextView mTvNewsDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_news);
-        String linkimage = "";
-        String title = "";
-        String date = "";
-        String description = "";
-        String name = "";
-        ImageView tvImage = (ImageView) findViewById(R.id.image);
-        Picasso.with(this)
-                .load(linkimage)
-                .into(tvImage);
-        TextView tvTitle = (TextView) findViewById(R.id.title);
-        tvTitle.setText(title);
-        TextView tvDate = (TextView) findViewById(R.id.date);
-        tvDate.setText(date);
-        TextView tvDescription = (TextView) findViewById(R.id.content);
-        tvDescription.setText(description);
-        TextView tvName = (TextView) findViewById(R.id.name);
-        tvName.setText(title);
-        setupToolbar(name);
-       // setupMaps(location);
-       // setupAction();
+
+        News p = getIntent().getParcelableExtra(NewsFragment.P_NEWS);
+        setupView(p);
+
+        setupToolbar(p);
+
     }
+    private void setupView(News p) {
+        mTvNewsTitle = (TextView) findViewById(R.id.title);
+        mImgCover = (ImageView) findViewById(R.id.image);
+        mTvNewsDate = (TextView) findViewById(R.id.date);
+        mTvNewsAuthor = (TextView) findViewById(R.id.name);
+        mTvNewsDescription = (TextView) findViewById(R.id.content);
+
+
+        // Update data
+        if (p != null) {
+            Picasso.with(this)
+                    .load(p.getThumbnail())
+                    .placeholder(R.drawable.placeholder)
+                    .into(mImgCover);
+            mTvNewsTitle.setText(p.getTitle());
+            mTvNewsDate.setText(p.getDate());
+            mTvNewsAuthor.setText(p.getAuthor());
+            mTvNewsDescription.setText(p.getContent());
+        }
+    }
+
+    private void setupToolbar(News p) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setTitle((p == null) && (p.getTitle() != null) ? "Chi tiết tin tức" : p.getTitle());
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -55,12 +80,12 @@ public class DetailNewsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
+       // if (id == android.R.id.home) {
             finish();
             return true;
-        }
+      //  }
 
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
     }
     private void setupToolbar(String title) {
         ActionBar ab = getSupportActionBar();
@@ -70,63 +95,10 @@ public class DetailNewsActivity extends AppCompatActivity {
             ab.setTitle(title);
         }
     }
-//
-//    private void setupAction() {
-//        LinearLayout photo = (LinearLayout) findViewById(R.id.action_photo);
-//        LinearLayout direct = (LinearLayout) findViewById(R.id.action_direct);
-//        LinearLayout save = (LinearLayout) findViewById(R.id.action_save);
-//        LinearLayout share = (LinearLayout) findViewById(R.id.action_share);
-//        photo.setOnClickListener(this);
-//        direct.setOnClickListener(this);
-//        save.setOnClickListener(this);
-//        share.setOnClickListener(this);
-//    }
 
-//    private void setupMaps(String location) {
-//        mMaps = (ImageView) findViewById(R.id.maps);
-//        try {
-//            location = URLEncoder.encode(location, "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            Log.e(TAG, e.toString());
-//        }
-//        String path = "https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=500x250&maptype=roadmap";
-//        path += "&center=" + location;
-//        path += "&markers=color:orange%7Clabel:S%7C" + location;
-//        Log.e(TAG, "setupMaps\n" + path);
-//
-//        Picasso.with(this)
-//                .load(path)
-//                .into(mMaps);
-//    }
+    @Override
+    public void onClick(View v) {
 
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.action_photo:
-//                doOnPhoToClicked();
-//                break;
-//            case R.id.action_direct:
-//                doOnDirectClicked();
-//                break;
-//            case R.id.action_save:
-//                doOnSaveClicked();
-//                break;
-//            case R.id.action_share:
-//                doOnSharelicked();
-//                break;
-//        }
-//    }
-//
-//    private void doOnPhoToClicked() {
-//
-//    }
-//    private void doOnDirectClicked() {
-//
-//    }
-//    private void doOnSaveClicked() {
-//
-//    }
-//    private void doOnSharelicked() {
-//
-//    }
+    }
+
 }

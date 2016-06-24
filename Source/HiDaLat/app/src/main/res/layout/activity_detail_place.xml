@@ -16,7 +16,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/place_image"
                     android:src="@drawable/cdsp"
                     android:scaleType="centerCrop"
                     android:maxHeight="196dp"
@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/title"
+                        android:id="@+id/place_name"
                         android:textSize="@dimen/head1"
                         android:textColor="@color/headline_text"
                         android:text="Cao đẳng sư phạm"
@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:id="@+id/address"
+                        android:id="@+id/place_address"
                         android:maxLines="2"
                         android:textColor="@color/grey"
                         android:text="@string/short_sample"
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:id="@+id/maps"
+                        android:id="@+id/place_maps"
                         android:scaleType="centerCrop"
                         android:layout_width="match_parent"
                         android:layout_height="144dp" />
@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:id="@+id/content"
+                        android:id="@+id/place_content"
                         android:layout_marginTop="@dimen/vertical_margin"
                         android:text="@string/long_sample"
                         android:textColor="@color/grey"
@@ -98,10 +98,26 @@
                         android:layout_height="wrap_content" />
                     <include layout="@layout/list_thumbnail"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:padding="2dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/related_tour"
+                        android:textSize="@dimen/head2"
+                        android:textStyle="bold"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <include layout="@layout/row_tour" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     <TextView
-        android:id="@+id/type"
+        android:id="@+id/place_type"
         android:textAllCaps="true"
         android:text="Địa điểm"
         android:textStyle="bold"

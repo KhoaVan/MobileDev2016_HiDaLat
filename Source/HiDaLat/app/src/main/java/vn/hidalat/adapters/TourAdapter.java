@@ -1,6 +1,7 @@
 package vn.hidalat.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import vn.hidalat.R;
 import vn.hidalat.interfaces.OnItemClickListener;
+import vn.hidalat.models.News;
 import vn.hidalat.models.Tour;
 
 /**
@@ -83,8 +85,8 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
                 Tour place = mData.get(position);
                 BasicItemViewHolder basicHolder = (BasicItemViewHolder) holder;
                 basicHolder.tvName.setText(place.getName());
-                basicHolder.tvAddress.setText(place.getAddress());
-                basicHolder.tvTime.setText(place.getTime());
+                basicHolder.tvDescription.setText(place.getDecription());
+                basicHolder.tvStardate.setText(place.getStartdate());
                 basicHolder.tvPrice.setText(place.getPrice());
                 Picasso.with(mContext)
                         .load(place.getThumbnail())
@@ -121,8 +123,8 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 
     public final class BasicItemViewHolder extends ViewHolder {
         public TextView tvName;
-        public TextView tvAddress;
-        public TextView tvTime;
+        public TextView tvDescription;
+        public TextView tvStardate;
         public TextView tvPrice;
         public ImageView imgThumbnail;
 
@@ -130,9 +132,9 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
             super(itemView);
             itemView.setOnClickListener(this);
             itemView.findViewById(R.id.card).setOnClickListener(this);
-            tvName = (TextView) itemView.findViewById(R.id.name);
-            tvAddress = (TextView) itemView.findViewById(R.id.address);
-            tvTime = (TextView) itemView.findViewById(R.id.time);
+            tvName = (TextView) itemView.findViewById(R.id.place_name);
+            tvDescription = (TextView) itemView.findViewById(R.id.place_address);
+            tvStardate = (TextView) itemView.findViewById(R.id.time);
             tvPrice = (TextView) itemView.findViewById(R.id.price);
             imgThumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
         }
@@ -146,6 +148,10 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 
     public ArrayList<Tour> getData() {
         return mData;
+    }
+
+    public Tour getItem(int position) {
+        return mData == null ? null : mData.get(position);
     }
 
     public void setPageLoaded(int pageLoaded) {
@@ -185,6 +191,25 @@ public class TourAdapter  extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
             mData.add(item);
             notifyItemInserted(mData.size() - 1);
         }
+    }
+
+    public boolean addItems(@NonNull ArrayList<Tour> newData) {
+        for (Tour trans : newData) {
+            mData.add(trans);
+            notifyItemInserted(mData.size() - 1);
+        }
+        return true;
+    }
+
+    public boolean removeItem(Tour item) {
+        int itemIndex = mData.lastIndexOf(item);
+        if (itemIndex != -1) {
+            mData.remove(itemIndex);
+            notifyItemRemoved(itemIndex);
+            return true;
+        }
+
+        return false;
     }
 
     public interface LoadMoreListener {

@@ -19,9 +19,8 @@
                 android:id="@+id/image"
                 android:src="@drawable/cdsp"
                 android:scaleType="centerCrop"
-                android:maxHeight="196dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="336dp" />
             <LinearLayout
                 android:background="@android:color/white"
                 android:orientation="vertical"
@@ -107,9 +106,9 @@
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
-    <include layout="@layout/action_detail_place"
-        android:layout_gravity="bottom"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent" />
+    <!--<include layout="@layout/action_detail_place"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent" />-->
 
 </FrameLayout>
