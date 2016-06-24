@@ -49,12 +49,16 @@ public class DetailPlaceActivity extends AppCompatActivity implements View.OnCli
     // Place type
     private TextView mTvPlaceType;
 
+    //place object
+    Place currentPlace;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_place);
 
         Place p = getIntent().getParcelableExtra(GeneralPlaceFragment.P_PLACE);
+        currentPlace = p;
         setupView(p);
 
         setupToolbar(p);
@@ -225,7 +229,7 @@ public class DetailPlaceActivity extends AppCompatActivity implements View.OnCli
     }
     private void doOnSharelicked() {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        Uri screenshotUri = Uri.parse("https://pbs.twimg.com/profile_images/655066410087940096/QSUlrrlm.png");
+        Uri screenshotUri = Uri.parse(currentPlace.getThumbnail());
 
         try {
             InputStream stream = getContentResolver().openInputStream(screenshotUri);
